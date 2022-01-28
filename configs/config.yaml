@@ -1,0 +1,16 @@
+Server:
+  RunMode: debug
+  HttpPort: 1016
+  ReadTimeout: 60
+  WriteTimeout: 60
+Database:
+  DBType: mysql
+  Username: root
+  Password: 123456
+  Host: 127.0.0.1:3307
+  DBName: rule-server
+  TablePrefix:
+  Charset: utf8mb4
+  ParseTime: True
+  MaxIdleConns: 10
+  MaxOpenConns: 30

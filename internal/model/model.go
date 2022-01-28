@@ -22,7 +22,7 @@ func NewDBEngine(databaseSetting *setting.DatabaseSettingS) (*gorm.DB, error) {
 	)
 
 	db, err := gorm.Open(mysql.New(mysql.Config{
-		DSN: dsn, // DSN data source name
+		DSN: dsn,
 	}), &gorm.Config{
 		NamingStrategy: schema.NamingStrategy{SingularTable: true},
 		Logger:         logger.Default.LogMode(logger.Info),

@@ -9,7 +9,6 @@ Database:
   Password: 123456
   Host: 127.0.0.1:3307
   DBName: rule-server
-  TablePrefix:
   Charset: utf8mb4
   ParseTime: True
   MaxIdleConns: 10

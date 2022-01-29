@@ -3,8 +3,7 @@ package app
 import (
 	"net/http"
 
-	"github.com/EZ4BRUCE/rule-server/pkg/error"
-
+	"github.com/EZ4BRUCE/rule-server/pkg/errcode"
 	"github.com/gin-gonic/gin"
 )
 
@@ -24,7 +23,7 @@ func (r *Response) ToResponse(data interface{}) {
 	r.Ctx.JSON(http.StatusOK, data)
 }
 
-func (r *Response) ToErrorResponse(err *error.Error) {
+func (r *Response) ToErrorResponse(err *errcode.Error) {
 	response := gin.H{"code": err.Code(), "msg": err.Msg()}
 	details := err.Details()
 	if len(details) > 0 {

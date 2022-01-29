@@ -12,7 +12,7 @@ type Service struct {
 	dao *dao.Dao
 }
 
-func NewService(ctx context.Context) Service {
+func New(ctx context.Context) Service {
 	svc := Service{ctx: ctx}
 	svc.dao = dao.New(global.DBEngine)
 	return svc

@@ -103,7 +103,7 @@ func (a Aggregator) Search(c *gin.Context) {
 func (a Aggregator) List(c *gin.Context) {
 	response := app.NewResponse(c)
 	svc := service.New(c.Request.Context())
-	aggregators, err := svc.ListAggregator()
+	aggregators, err := svc.ListAggregators()
 	if err != nil {
 		response.ToErrorResponse(errcode.ServerError.WithDetails("获取错误：" + err.Error()))
 		return

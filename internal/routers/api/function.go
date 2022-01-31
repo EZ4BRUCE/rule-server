@@ -88,7 +88,7 @@ func (f Function) Get(c *gin.Context) {
 func (f Function) List(c *gin.Context) {
 	response := app.NewResponse(c)
 	svc := service.New(c.Request.Context())
-	functions, err := svc.ListFunction()
+	functions, err := svc.ListFunctions()
 	if err != nil {
 		response.ToErrorResponse(errcode.ServerError.WithDetails("获取错误：" + err.Error()))
 		return

@@ -22,6 +22,6 @@ func (svc *Service) GetFunction(id uint32) (model.Function, error) {
 func (svc *Service) UpdateFunction(param *request.UpdateFunctionRequest) error {
 	return svc.dao.UpdateFunction(param.Id, param.Type, param.Threshold, param.Description)
 }
-func (svc *Service) ListFunction() ([]model.Function, error) {
-	return svc.dao.ListFunction()
+func (svc *Service) ListFunctions() ([]model.Function, error) {
+	return svc.dao.ListFunctions()
 }

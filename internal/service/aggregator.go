@@ -22,10 +22,10 @@ func (svc *Service) UpdateAggregator(param *request.UpdateAggregatorRequest) err
 	return svc.dao.UpdateAggregator(param.Id, param.Name, param.Metric, param.FunctionId, param.RuleId)
 }
 
-func (svc *Service) SearchAggregator(metric string) ([]model.Aggregator, error) {
-	return svc.dao.SearchAggregator(metric)
+func (svc *Service) SearchAggregators(metric string) ([]model.Aggregator, error) {
+	return svc.dao.SearchAggregators(metric)
 }
 
-func (svc *Service) ListAggregator() ([]model.Aggregator, error) {
-	return svc.dao.ListAggregator()
+func (svc *Service) ListAggregators() ([]model.Aggregator, error) {
+	return svc.dao.ListAggregators()
 }

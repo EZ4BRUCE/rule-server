@@ -23,7 +23,7 @@ func (d Dao) UpdateRule(id uint32, level, action, description string) error {
 	return rule.Update(d.engine)
 }
 
-func (d Dao) ListRule() ([]model.Rule, error) {
+func (d Dao) ListRules() ([]model.Rule, error) {
 	rule := model.Rule{}
 	return rule.List(d.engine)
 }

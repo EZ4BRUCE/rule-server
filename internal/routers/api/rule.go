@@ -88,7 +88,7 @@ func (r Rule) Get(c *gin.Context) {
 func (r Rule) List(c *gin.Context) {
 	response := app.NewResponse(c)
 	svc := service.New(c.Request.Context())
-	rules, err := svc.ListRule()
+	rules, err := svc.ListRules()
 	if err != nil {
 		response.ToErrorResponse(errcode.ServerError.WithDetails("获取错误：" + err.Error()))
 		return

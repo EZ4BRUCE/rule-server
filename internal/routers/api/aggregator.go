@@ -92,7 +92,7 @@ func (a Aggregator) Search(c *gin.Context) {
 	response := app.NewResponse(c)
 	metric := c.Param("metric")
 	svc := service.New(c.Request.Context())
-	aggregators, err := svc.SearchAggregator(metric)
+	aggregators, err := svc.SearchAggregators(metric)
 	if err != nil {
 		response.ToErrorResponse(errcode.ServerError.WithDetails("获取错误：" + err.Error()))
 		return

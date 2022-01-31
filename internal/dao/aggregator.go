@@ -23,12 +23,12 @@ func (d Dao) UpdateAggregator(id uint32, name, metric string, function_id, rule_
 	return aggregator.Update(d.engine)
 }
 
-func (d Dao) SearchAggregator(metric string) ([]model.Aggregator, error) {
+func (d Dao) SearchAggregators(metric string) ([]model.Aggregator, error) {
 	aggregator := model.Aggregator{}
 	return aggregator.Search(d.engine, metric)
 }
 
-func (d Dao) ListAggregator() ([]model.Aggregator, error) {
+func (d Dao) ListAggregators() ([]model.Aggregator, error) {
 	aggregator := model.Aggregator{}
 	return aggregator.List(d.engine)
 }

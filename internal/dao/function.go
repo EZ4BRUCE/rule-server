@@ -23,7 +23,7 @@ func (d Dao) UpdateFunction(id uint32, Type string, threshold float64, descripti
 	return function.Update(d.engine)
 }
 
-func (d Dao) ListFunction() ([]model.Function, error) {
+func (d Dao) ListFunctions() ([]model.Function, error) {
 	function := model.Function{}
 	return function.List(d.engine)
 }

@@ -23,6 +23,6 @@ func (svc *Service) UpdateRule(param *request.UpdateRuleRequest) error {
 	return svc.dao.UpdateRule(param.Id, param.Level, param.Action, param.Description)
 }
 
-func (svc *Service) ListRule() ([]model.Rule, error) {
-	return svc.dao.ListRule()
+func (svc *Service) ListRules() ([]model.Rule, error) {
+	return svc.dao.ListRules()
 }

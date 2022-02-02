@@ -45,6 +45,70 @@ definitions:
       level:
         type: string
     type: object
+  request.CreateAggregatorRequest:
+    properties:
+      functionId:
+        type: integer
+      metric:
+        type: string
+      name:
+        type: string
+      ruleId:
+        type: integer
+    type: object
+  request.CreateFunctionRequest:
+    properties:
+      description:
+        type: string
+      threshold:
+        type: number
+      type:
+        type: string
+    type: object
+  request.CreateRuleRequest:
+    properties:
+      action:
+        type: string
+      description:
+        type: string
+      level:
+        type: string
+    type: object
+  request.UpdateAggregatorRequest:
+    properties:
+      functionId:
+        type: integer
+      id:
+        type: integer
+      metric:
+        type: string
+      name:
+        type: string
+      ruleId:
+        type: integer
+    type: object
+  request.UpdateFunctionRequest:
+    properties:
+      description:
+        type: string
+      id:
+        type: integer
+      threshold:
+        type: number
+      type:
+        type: string
+    type: object
+  request.UpdateRuleRequest:
+    properties:
+      action:
+        type: string
+      description:
+        type: string
+      id:
+        type: integer
+      level:
+        type: string
+    type: object
 info:
   contact: {}
   description: Athena告警系统的告警规则配置子系统
@@ -59,34 +123,36 @@ paths:
       - description: 名称
         in: body
         name: name
-        required: true
         schema:
           type: string
       - description: 监控指标
         in: body
         name: metric
-        required: true
         schema:
           type: string
       - description: 聚合函数
         in: body
         name: function_id
-        required: true
         schema:
           type: integer
       - description: 告警规则
         in: body
         name: rule_id
-        required: true
         schema:
           type: integer
+      - description: 新增聚合器接口测试
+        in: body
+        name: 测试
+        required: true
+        schema:
+          $ref: '#/definitions/request.CreateAggregatorRequest'
       produces:
       - application/json
       responses:
         "200":
           description: 创建成功
           schema:
-            $ref: '#/definitions/model.Aggregator'
+            type: string
         "400":
           description: 请求错误
           schema:
@@ -101,33 +167,34 @@ paths:
       - description: 聚合器 ID
         in: body
         name: id
-        required: true
         schema:
           type: integer
       - description: 名称
         in: body
         name: name
-        required: true
         schema:
           type: string
       - description: 监控指标
         in: body
         name: metric
-        required: true
         schema:
           type: string
       - description: 聚合函数
         in: body
         name: function_id
-        required: true
         schema:
           type: integer
       - description: 告警规则
         in: body
         name: rule_id
-        required: true
         schema:
           type: integer
+      - description: 更新聚合器接口测试
+        in: body
+        name: 测试
+        required: true
+        schema:
+          $ref: '#/definitions/request.UpdateAggregatorRequest'
       produces:
       - application/json
       responses:
@@ -243,21 +310,24 @@ paths:
       - description: 函数类型
         in: body
         name: type
-        required: true
         schema:
           type: string
       - description: 阈值
         in: body
         name: threshold
-        required: true
         schema:
           type: number
       - description: 描述
         in: body
         name: description
-        required: true
         schema:
           type: string
+      - description: 新建聚合函数测试
+        in: body
+        name: 测试
+        required: true
+        schema:
+          $ref: '#/definitions/request.CreateFunctionRequest'
       produces:
       - application/json
       responses:
@@ -279,27 +349,29 @@ paths:
       - description: 聚合函数 ID
         in: body
         name: id
-        required: true
         schema:
           type: integer
       - description: 函数类型
         in: body
         name: type
-        required: true
         schema:
           type: string
       - description: 阈值
         in: body
         name: threshold
-        required: true
         schema:
           type: number
       - description: 描述
         in: body
         name: description
-        required: true
         schema:
           type: string
+      - description: 更新聚合函数测试
+        in: body
+        name: 测试
+        required: true
+        schema:
+          $ref: '#/definitions/request.UpdateFunctionRequest'
       produces:
       - application/json
       responses:
@@ -389,21 +461,24 @@ paths:
       - description: 警报等级
         in: body
         name: level
-        required: true
         schema:
           type: string
       - description: 告警行为
         in: body
         name: action
-        required: true
         schema:
           type: string
       - description: 描述
         in: body
         name: description
-        required: true
         schema:
           type: string
+      - description: 新建告警规则测试
+        in: body
+        name: 测试
+        required: true
+        schema:
+          $ref: '#/definitions/request.CreateRuleRequest'
       produces:
       - application/json
       responses:
@@ -425,27 +500,29 @@ paths:
       - description: 告警规则 ID
         in: body
         name: id
-        required: true
         schema:
           type: integer
       - description: 警报等级
         in: body
         name: level
-        required: true
         schema:
           type: string
       - description: 告警行为
         in: body
         name: action
-        required: true
         schema:
           type: string
       - description: 描述
         in: body
         name: description
-        required: true
         schema:
           type: string
+      - description: 更新告警规则测试
+        in: body
+        name: 测试
+        required: true
+        schema:
+          $ref: '#/definitions/request.UpdateRuleRequest'
       produces:
       - application/json
       responses:

@@ -20,7 +20,6 @@
                         "description": "聚合器 ID",
                         "name": "id",
                         "in": "body",
-                        "required": true,
                         "schema": {
                             "type": "integer"
                         }
@@ -29,7 +28,6 @@
                         "description": "名称",
                         "name": "name",
                         "in": "body",
-                        "required": true,
                         "schema": {
                             "type": "string"
                         }
@@ -38,7 +36,6 @@
                         "description": "监控指标",
                         "name": "metric",
                         "in": "body",
-                        "required": true,
                         "schema": {
                             "type": "string"
                         }
@@ -47,7 +44,6 @@
                         "description": "聚合函数",
                         "name": "function_id",
                         "in": "body",
-                        "required": true,
                         "schema": {
                             "type": "integer"
                         }
@@ -56,9 +52,17 @@
                         "description": "告警规则",
                         "name": "rule_id",
                         "in": "body",
-                        "required": true,
                         "schema": {
                             "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "更新聚合器接口测试",
+                        "name": "测试",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.UpdateAggregatorRequest"
                         }
                     }
                 ],
@@ -93,7 +97,6 @@
                         "description": "名称",
                         "name": "name",
                         "in": "body",
-                        "required": true,
                         "schema": {
                             "type": "string"
                         }
@@ -102,7 +105,6 @@
                         "description": "监控指标",
                         "name": "metric",
                         "in": "body",
-                        "required": true,
                         "schema": {
                             "type": "string"
                         }
@@ -111,7 +113,6 @@
                         "description": "聚合函数",
                         "name": "function_id",
                         "in": "body",
-                        "required": true,
                         "schema": {
                             "type": "integer"
                         }
@@ -120,9 +121,17 @@
                         "description": "告警规则",
                         "name": "rule_id",
                         "in": "body",
-                        "required": true,
                         "schema": {
                             "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "新增聚合器接口测试",
+                        "name": "测试",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.CreateAggregatorRequest"
                         }
                     }
                 ],
@@ -130,7 +139,7 @@
                     "200": {
                         "description": "创建成功",
                         "schema": {
-                            "$ref": "#/definitions/model.Aggregator"
+                            "type": "string"
                         }
                     },
                     "400": {
@@ -302,7 +311,6 @@
                         "description": "聚合函数 ID",
                         "name": "id",
                         "in": "body",
-                        "required": true,
                         "schema": {
                             "type": "integer"
                         }
@@ -311,7 +319,6 @@
                         "description": "函数类型",
                         "name": "type",
                         "in": "body",
-                        "required": true,
                         "schema": {
                             "type": "string"
                         }
@@ -320,7 +327,6 @@
                         "description": "阈值",
                         "name": "threshold",
                         "in": "body",
-                        "required": true,
                         "schema": {
                             "type": "number"
                         }
@@ -329,9 +335,17 @@
                         "description": "描述",
                         "name": "description",
                         "in": "body",
-                        "required": true,
                         "schema": {
                             "type": "string"
+                        }
+                    },
+                    {
+                        "description": "更新聚合函数测试",
+                        "name": "测试",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.UpdateFunctionRequest"
                         }
                     }
                 ],
@@ -366,7 +380,6 @@
                         "description": "函数类型",
                         "name": "type",
                         "in": "body",
-                        "required": true,
                         "schema": {
                             "type": "string"
                         }
@@ -375,7 +388,6 @@
                         "description": "阈值",
                         "name": "threshold",
                         "in": "body",
-                        "required": true,
                         "schema": {
                             "type": "number"
                         }
@@ -384,9 +396,17 @@
                         "description": "描述",
                         "name": "description",
                         "in": "body",
-                        "required": true,
                         "schema": {
                             "type": "string"
+                        }
+                    },
+                    {
+                        "description": "新建聚合函数测试",
+                        "name": "测试",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.CreateFunctionRequest"
                         }
                     }
                 ],
@@ -526,7 +546,6 @@
                         "description": "告警规则 ID",
                         "name": "id",
                         "in": "body",
-                        "required": true,
                         "schema": {
                             "type": "integer"
                         }
@@ -535,7 +554,6 @@
                         "description": "警报等级",
                         "name": "level",
                         "in": "body",
-                        "required": true,
                         "schema": {
                             "type": "string"
                         }
@@ -544,7 +562,6 @@
                         "description": "告警行为",
                         "name": "action",
                         "in": "body",
-                        "required": true,
                         "schema": {
                             "type": "string"
                         }
@@ -553,9 +570,17 @@
                         "description": "描述",
                         "name": "description",
                         "in": "body",
-                        "required": true,
                         "schema": {
                             "type": "string"
+                        }
+                    },
+                    {
+                        "description": "更新告警规则测试",
+                        "name": "测试",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.UpdateRuleRequest"
                         }
                     }
                 ],
@@ -590,7 +615,6 @@
                         "description": "警报等级",
                         "name": "level",
                         "in": "body",
-                        "required": true,
                         "schema": {
                             "type": "string"
                         }
@@ -599,7 +623,6 @@
                         "description": "告警行为",
                         "name": "action",
                         "in": "body",
-                        "required": true,
                         "schema": {
                             "type": "string"
                         }
@@ -608,9 +631,17 @@
                         "description": "描述",
                         "name": "description",
                         "in": "body",
-                        "required": true,
                         "schema": {
                             "type": "string"
+                        }
+                    },
+                    {
+                        "description": "新建告警规则测试",
+                        "name": "测试",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.CreateRuleRequest"
                         }
                     }
                 ],
@@ -796,6 +827,105 @@
             }
         },
         "model.Rule": {
+            "type": "object",
+            "properties": {
+                "action": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "level": {
+                    "type": "string"
+                }
+            }
+        },
+        "request.CreateAggregatorRequest": {
+            "type": "object",
+            "properties": {
+                "functionId": {
+                    "type": "integer"
+                },
+                "metric": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "ruleId": {
+                    "type": "integer"
+                }
+            }
+        },
+        "request.CreateFunctionRequest": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "threshold": {
+                    "type": "number"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "request.CreateRuleRequest": {
+            "type": "object",
+            "properties": {
+                "action": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "level": {
+                    "type": "string"
+                }
+            }
+        },
+        "request.UpdateAggregatorRequest": {
+            "type": "object",
+            "properties": {
+                "functionId": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "metric": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "ruleId": {
+                    "type": "integer"
+                }
+            }
+        },
+        "request.UpdateFunctionRequest": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "threshold": {
+                    "type": "number"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "request.UpdateRuleRequest": {
             "type": "object",
             "properties": {
                 "action": {

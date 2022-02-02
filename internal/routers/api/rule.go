@@ -18,9 +18,10 @@ func NewRule() Rule {
 
 // @Summary 新增告警规则
 // @Produce  json
-// @Param level body string true "警报等级"
-// @Param action body string true "告警行为"
-// @Param description body string true "描述"
+// @Param level body string false "警报等级"
+// @Param action body string false "告警行为"
+// @Param description body string false "描述"
+// @Param 测试 body request.CreateRuleRequest true "新建告警规则测试"
 // @Success 200 {object} model.Rule "创建成功"
 // @Failure 400 {object} errcode.Error "请求错误"
 // @Failure 500 {object} errcode.Error "内部错误"
@@ -45,7 +46,7 @@ func (r Rule) Create(c *gin.Context) {
 
 // @Summary 删除告警规则
 // @Produce  json
-// @Param id path int true "告警规则 ID"
+// @Param id path uint32 true "告警规则 ID"
 // @Success 200 {string} string "删除成功"
 // @Failure 400 {object} errcode.Error "请求错误"
 // @Failure 500 {object} errcode.Error "内部错误"
@@ -70,10 +71,11 @@ func (r Rule) Delete(c *gin.Context) {
 
 // @Summary 更新告警规则
 // @Produce  json
-// @Param id body int true "告警规则 ID"
-// @Param level body string true "警报等级"
-// @Param action body string true "告警行为"
-// @Param description body string true "描述"
+// @Param id body uint32 false "告警规则 ID"
+// @Param level body string false "警报等级"
+// @Param action body string false "告警行为"
+// @Param description body string false "描述"
+// @Param 测试 body request.UpdateRuleRequest true "更新告警规则测试"
 // @Success 200 {string} string "更新成功"
 // @Failure 400 {object} errcode.Error "请求错误"
 // @Failure 500 {object} errcode.Error "内部错误"
@@ -97,7 +99,7 @@ func (r Rule) Update(c *gin.Context) {
 
 // @Summary 获取单个告警规则
 // @Produce  json
-// @Param id path int true "告警规则 ID"
+// @Param id path uint32 true "告警规则 ID"
 // @Success 200 {object} model.Rule "获取成功"
 // @Failure 400 {object} errcode.Error "请求错误"
 // @Failure 500 {object} errcode.Error "内部错误"

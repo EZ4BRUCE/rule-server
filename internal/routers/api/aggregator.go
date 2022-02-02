@@ -20,11 +20,12 @@ func NewAggregator() Aggregator {
 
 // @Summary 新增聚合器
 // @Produce  json
-// @Param name body string true "名称"
-// @Param metric body string true "监控指标"
-// @Param function_id body int true "聚合函数"
-// @Param rule_id body int true "告警规则"
-// @Success 200 {object} model.Aggregator "创建成功"
+// @Param name body string false "名称"
+// @Param metric body string false "监控指标"
+// @Param function_id body uint32 false "聚合函数"
+// @Param rule_id body uint32 false "告警规则"
+// @Param 测试 body request.CreateAggregatorRequest true "新增聚合器接口测试"
+// @Success 200 {string} string "创建成功"
 // @Failure 400 {object} errcode.Error "请求错误"
 // @Failure 500 {object} errcode.Error "内部错误"
 // @Router /api/aggregator [post]
@@ -49,7 +50,7 @@ func (a Aggregator) Create(c *gin.Context) {
 
 // @Summary 删除聚合器
 // @Produce  json
-// @Param id path int true "聚合器 ID"
+// @Param id path uint32 true "聚合器 ID"
 // @Success 200 {string} string "删除成功"
 // @Failure 400 {object} errcode.Error "请求错误"
 // @Failure 500 {object} errcode.Error "内部错误"
@@ -72,11 +73,12 @@ func (a Aggregator) Delete(c *gin.Context) {
 
 // @Summary 更新聚合器
 // @Produce  json
-// @Param id body int true "聚合器 ID"
-// @Param name body string true "名称"
-// @Param metric body string true "监控指标"
-// @Param function_id body int true "聚合函数"
-// @Param rule_id body int true "告警规则"
+// @Param id body uint32 false "聚合器 ID"
+// @Param name body string false "名称"
+// @Param metric body string false "监控指标"
+// @Param function_id body uint32 false "聚合函数"
+// @Param rule_id body uint32 false "告警规则"
+// @Param 测试 body request.UpdateAggregatorRequest true "更新聚合器接口测试"
 // @Success 200 {string} string "更新成功"
 // @Failure 400 {object} errcode.Error "请求错误"
 // @Failure 500 {object} errcode.Error "内部错误"
@@ -100,7 +102,7 @@ func (a Aggregator) Update(c *gin.Context) {
 
 // @Summary 获取单个聚合器
 // @Produce  json
-// @Param id path int true "聚合器 ID"
+// @Param id path uint32 true "聚合器 ID"
 // @Success 200 {object} model.Aggregator "获取成功"
 // @Failure 400 {object} errcode.Error "请求错误"
 // @Failure 500 {object} errcode.Error "内部错误"

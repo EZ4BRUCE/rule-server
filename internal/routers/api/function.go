@@ -18,9 +18,10 @@ func NewFunction() Function {
 
 // @Summary 新增聚合函数
 // @Produce  json
-// @Param type body string true "函数类型"
-// @Param threshold body float32 true "阈值"
-// @Param description body string true "描述"
+// @Param type body string false "函数类型"
+// @Param threshold body float32 false "阈值"
+// @Param description body string false "描述"
+// @Param 测试 body request.CreateFunctionRequest true "新建聚合函数测试"
 // @Success 200 {object} model.Function "创建成功"
 // @Failure 400 {object} errcode.Error "请求错误"
 // @Failure 500 {object} errcode.Error "内部错误"
@@ -45,7 +46,7 @@ func (f Function) Create(c *gin.Context) {
 
 // @Summary 删除聚合函数
 // @Produce  json
-// @Param id path int true "聚合函数 ID"
+// @Param id path uint32 true "聚合函数 ID"
 // @Success 200 {string} string "删除成功"
 // @Failure 400 {object} errcode.Error "请求错误"
 // @Failure 500 {object} errcode.Error "内部错误"
@@ -70,10 +71,11 @@ func (f Function) Delete(c *gin.Context) {
 
 // @Summary 更新聚合函数
 // @Produce  json
-// @Param id body int true "聚合函数 ID"
-// @Param type body string true "函数类型"
-// @Param threshold body float32 true "阈值"
-// @Param description body string true "描述"
+// @Param id body uint32 false "聚合函数 ID"
+// @Param type body string false "函数类型"
+// @Param threshold body float32 false "阈值"
+// @Param description body string false "描述"
+// @Param 测试 body request.UpdateFunctionRequest true "更新聚合函数测试"
 // @Success 200 {string} string "更新成功"
 // @Failure 400 {object} errcode.Error "请求错误"
 // @Failure 500 {object} errcode.Error "内部错误"
@@ -97,7 +99,7 @@ func (f Function) Update(c *gin.Context) {
 
 // @Summary 获取单个聚合函数
 // @Produce  json
-// @Param id path int true "聚合函数 ID"
+// @Param id path uint32 true "聚合函数 ID"
 // @Success 200 {object} model.Function "获取成功"
 // @Failure 400 {object} errcode.Error "请求错误"
 // @Failure 500 {object} errcode.Error "内部错误"

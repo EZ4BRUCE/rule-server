@@ -16,6 +16,15 @@ func NewRule() Rule {
 	return Rule{}
 }
 
+// @Summary 新增告警规则
+// @Produce  json
+// @Param level body string true "警报等级"
+// @Param action body string true "告警行为"
+// @Param description body string true "描述"
+// @Success 200 {object} model.Rule "创建成功"
+// @Failure 400 {object} errcode.Error "请求错误"
+// @Failure 500 {object} errcode.Error "内部错误"
+// @Router /api/rule [post]
 func (r Rule) Create(c *gin.Context) {
 	param := request.CreateRuleRequest{}
 	response := app.NewResponse(c)
@@ -34,6 +43,13 @@ func (r Rule) Create(c *gin.Context) {
 
 }
 
+// @Summary 删除告警规则
+// @Produce  json
+// @Param id path int true "告警规则 ID"
+// @Success 200 {string} string "删除成功"
+// @Failure 400 {object} errcode.Error "请求错误"
+// @Failure 500 {object} errcode.Error "内部错误"
+// @Router /api/rule/{id} [delete]
 func (r Rule) Delete(c *gin.Context) {
 	response := app.NewResponse(c)
 	uintId, err := convert.StrTo(c.Param("id")).UInt32()
@@ -52,6 +68,16 @@ func (r Rule) Delete(c *gin.Context) {
 
 }
 
+// @Summary 更新告警规则
+// @Produce  json
+// @Param id body int true "告警规则 ID"
+// @Param level body string true "警报等级"
+// @Param action body string true "告警行为"
+// @Param description body string true "描述"
+// @Success 200 {string} string "更新成功"
+// @Failure 400 {object} errcode.Error "请求错误"
+// @Failure 500 {object} errcode.Error "内部错误"
+// @Router /api/rule [put]
 func (r Rule) Update(c *gin.Context) {
 	param := request.UpdateRuleRequest{}
 	response := app.NewResponse(c)
@@ -69,6 +95,13 @@ func (r Rule) Update(c *gin.Context) {
 	response.ToResponse(gin.H{"msg": "更新成功"})
 }
 
+// @Summary 获取单个告警规则
+// @Produce  json
+// @Param id path int true "告警规则 ID"
+// @Success 200 {object} model.Rule "获取成功"
+// @Failure 400 {object} errcode.Error "请求错误"
+// @Failure 500 {object} errcode.Error "内部错误"
+// @Router /api/rule/{id} [get]
 func (r Rule) Get(c *gin.Context) {
 	response := app.NewResponse(c)
 	uintId, err := convert.StrTo(c.Param("id")).UInt32()
@@ -85,6 +118,12 @@ func (r Rule) Get(c *gin.Context) {
 	response.ToResponse(gin.H{"Rule": rule, "msg": "获取成功"})
 }
 
+// @Summary 获取所有告警规则
+// @Produce  json
+// @Success 200 {array} model.Rule "获取成功"
+// @Failure 400 {object} errcode.Error "请求错误"
+// @Failure 500 {object} errcode.Error "内部错误"
+// @Router /api/rules [get]
 func (r Rule) List(c *gin.Context) {
 	response := app.NewResponse(c)
 	svc := service.New(c.Request.Context())

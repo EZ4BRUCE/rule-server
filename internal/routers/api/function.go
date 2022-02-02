@@ -16,6 +16,15 @@ func NewFunction() Function {
 	return Function{}
 }
 
+// @Summary 新增聚合函数
+// @Produce  json
+// @Param type body string true "函数类型"
+// @Param threshold body float32 true "阈值"
+// @Param description body string true "描述"
+// @Success 200 {object} model.Function "创建成功"
+// @Failure 400 {object} errcode.Error "请求错误"
+// @Failure 500 {object} errcode.Error "内部错误"
+// @Router /api/function [post]
 func (f Function) Create(c *gin.Context) {
 	param := request.CreateFunctionRequest{}
 	response := app.NewResponse(c)
@@ -34,6 +43,13 @@ func (f Function) Create(c *gin.Context) {
 
 }
 
+// @Summary 删除聚合函数
+// @Produce  json
+// @Param id path int true "聚合函数 ID"
+// @Success 200 {string} string "删除成功"
+// @Failure 400 {object} errcode.Error "请求错误"
+// @Failure 500 {object} errcode.Error "内部错误"
+// @Router /api/function/{id} [delete]
 func (f Function) Delete(c *gin.Context) {
 	response := app.NewResponse(c)
 	uintId, err := convert.StrTo(c.Param("id")).UInt32()
@@ -52,6 +68,16 @@ func (f Function) Delete(c *gin.Context) {
 
 }
 
+// @Summary 更新聚合函数
+// @Produce  json
+// @Param id body int true "聚合函数 ID"
+// @Param type body string true "函数类型"
+// @Param threshold body float32 true "阈值"
+// @Param description body string true "描述"
+// @Success 200 {string} string "更新成功"
+// @Failure 400 {object} errcode.Error "请求错误"
+// @Failure 500 {object} errcode.Error "内部错误"
+// @Router /api/function [put]
 func (f Function) Update(c *gin.Context) {
 	param := request.UpdateFunctionRequest{}
 	response := app.NewResponse(c)
@@ -69,6 +95,13 @@ func (f Function) Update(c *gin.Context) {
 	response.ToResponse(gin.H{"msg": "更新成功"})
 }
 
+// @Summary 获取单个聚合函数
+// @Produce  json
+// @Param id path int true "聚合函数 ID"
+// @Success 200 {object} model.Function "获取成功"
+// @Failure 400 {object} errcode.Error "请求错误"
+// @Failure 500 {object} errcode.Error "内部错误"
+// @Router /api/function/{id} [get]
 func (f Function) Get(c *gin.Context) {
 	response := app.NewResponse(c)
 	uintId, err := convert.StrTo(c.Param("id")).UInt32()
@@ -85,6 +118,12 @@ func (f Function) Get(c *gin.Context) {
 	response.ToResponse(gin.H{"Function": function, "msg": "获取成功"})
 }
 
+// @Summary 获取所有聚合函数
+// @Produce  json
+// @Success 200 {array} model.Function "获取成功"
+// @Failure 400 {object} errcode.Error "请求错误"
+// @Failure 500 {object} errcode.Error "内部错误"
+// @Router /api/functions [get]
 func (f Function) List(c *gin.Context) {
 	response := app.NewResponse(c)
 	svc := service.New(c.Request.Context())

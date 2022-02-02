@@ -1,0 +1,532 @@
+definitions:
+  errcode.Error:
+    properties:
+      code:
+        type: integer
+      details:
+        items:
+          type: string
+        type: array
+      msg:
+        type: string
+    type: object
+  model.Aggregator:
+    properties:
+      function_id:
+        type: integer
+      id:
+        type: integer
+      metric:
+        type: string
+      name:
+        type: string
+      rule_id:
+        type: integer
+    type: object
+  model.Function:
+    properties:
+      description:
+        type: string
+      id:
+        type: integer
+      threshold:
+        type: number
+      type:
+        type: string
+    type: object
+  model.Rule:
+    properties:
+      action:
+        type: string
+      description:
+        type: string
+      id:
+        type: integer
+      level:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: Athena告警系统的告警规则配置子系统
+  license: {}
+  termsOfService: https://github.com/EZ4BRUCE/rule-server
+  title: 告警规则配置系统
+  version: "1.0"
+paths:
+  /api/aggregator:
+    post:
+      parameters:
+      - description: 名称
+        in: body
+        name: name
+        required: true
+        schema:
+          type: string
+      - description: 监控指标
+        in: body
+        name: metric
+        required: true
+        schema:
+          type: string
+      - description: 聚合函数
+        in: body
+        name: function_id
+        required: true
+        schema:
+          type: integer
+      - description: 告警规则
+        in: body
+        name: rule_id
+        required: true
+        schema:
+          type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 创建成功
+          schema:
+            $ref: '#/definitions/model.Aggregator'
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+      summary: 新增聚合器
+    put:
+      parameters:
+      - description: 聚合器 ID
+        in: body
+        name: id
+        required: true
+        schema:
+          type: integer
+      - description: 名称
+        in: body
+        name: name
+        required: true
+        schema:
+          type: string
+      - description: 监控指标
+        in: body
+        name: metric
+        required: true
+        schema:
+          type: string
+      - description: 聚合函数
+        in: body
+        name: function_id
+        required: true
+        schema:
+          type: integer
+      - description: 告警规则
+        in: body
+        name: rule_id
+        required: true
+        schema:
+          type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 更新成功
+          schema:
+            type: string
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+      summary: 更新聚合器
+  /api/aggregator/{id}:
+    delete:
+      parameters:
+      - description: 聚合器 ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 删除成功
+          schema:
+            type: string
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+      summary: 删除聚合器
+    get:
+      parameters:
+      - description: 聚合器 ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 获取成功
+          schema:
+            $ref: '#/definitions/model.Aggregator'
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+      summary: 获取单个聚合器
+  /api/aggregator/search/{metric}:
+    get:
+      parameters:
+      - description: 监控指标
+        in: path
+        name: metric
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 获取成功
+          schema:
+            items:
+              $ref: '#/definitions/model.Aggregator'
+            type: array
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+      summary: 获取特定指标的聚合器
+  /api/aggregators:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 获取成功
+          schema:
+            items:
+              $ref: '#/definitions/model.Aggregator'
+            type: array
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+      summary: 获取所有聚合器
+  /api/function:
+    post:
+      parameters:
+      - description: 函数类型
+        in: body
+        name: type
+        required: true
+        schema:
+          type: string
+      - description: 阈值
+        in: body
+        name: threshold
+        required: true
+        schema:
+          type: number
+      - description: 描述
+        in: body
+        name: description
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 创建成功
+          schema:
+            $ref: '#/definitions/model.Function'
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+      summary: 新增聚合函数
+    put:
+      parameters:
+      - description: 聚合函数 ID
+        in: body
+        name: id
+        required: true
+        schema:
+          type: integer
+      - description: 函数类型
+        in: body
+        name: type
+        required: true
+        schema:
+          type: string
+      - description: 阈值
+        in: body
+        name: threshold
+        required: true
+        schema:
+          type: number
+      - description: 描述
+        in: body
+        name: description
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 更新成功
+          schema:
+            type: string
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+      summary: 更新聚合函数
+  /api/function/{id}:
+    delete:
+      parameters:
+      - description: 聚合函数 ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 删除成功
+          schema:
+            type: string
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+      summary: 删除聚合函数
+    get:
+      parameters:
+      - description: 聚合函数 ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 获取成功
+          schema:
+            $ref: '#/definitions/model.Function'
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+      summary: 获取单个聚合函数
+  /api/functions:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 获取成功
+          schema:
+            items:
+              $ref: '#/definitions/model.Function'
+            type: array
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+      summary: 获取所有聚合函数
+  /api/rule:
+    post:
+      parameters:
+      - description: 警报等级
+        in: body
+        name: level
+        required: true
+        schema:
+          type: string
+      - description: 告警行为
+        in: body
+        name: action
+        required: true
+        schema:
+          type: string
+      - description: 描述
+        in: body
+        name: description
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 创建成功
+          schema:
+            $ref: '#/definitions/model.Rule'
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+      summary: 新增告警规则
+    put:
+      parameters:
+      - description: 告警规则 ID
+        in: body
+        name: id
+        required: true
+        schema:
+          type: integer
+      - description: 警报等级
+        in: body
+        name: level
+        required: true
+        schema:
+          type: string
+      - description: 告警行为
+        in: body
+        name: action
+        required: true
+        schema:
+          type: string
+      - description: 描述
+        in: body
+        name: description
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 更新成功
+          schema:
+            type: string
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+      summary: 更新告警规则
+  /api/rule/{id}:
+    delete:
+      parameters:
+      - description: 告警规则 ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 删除成功
+          schema:
+            type: string
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+      summary: 删除告警规则
+    get:
+      parameters:
+      - description: 告警规则 ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 获取成功
+          schema:
+            $ref: '#/definitions/model.Rule'
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+      summary: 获取单个告警规则
+  /api/rules:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 获取成功
+          schema:
+            items:
+              $ref: '#/definitions/model.Rule'
+            type: array
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+      summary: 获取所有告警规则
+swagger: "2.0"

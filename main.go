@@ -24,6 +24,10 @@ func init() {
 
 }
 
+// @title 告警规则配置系统
+// @version 1.0
+// @description Athena告警系统的告警规则配置子系统
+// @termsOfService https://github.com/EZ4BRUCE/rule-server
 func main() {
 	gin.SetMode(global.ServerSetting.RunMode)
 	router := routers.NewRouter()

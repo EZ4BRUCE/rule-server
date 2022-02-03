@@ -7,7 +7,9 @@ Database:
   DBType: mysql
   Username: root
   Password: 123456
-  Host: 127.0.0.1:3307
+  # rule-server-mysql
+  Host: host.docker.internal:13306
+  # Host: 127.0.0.1:13306
   DBName: rule-server
   Charset: utf8mb4
   ParseTime: True

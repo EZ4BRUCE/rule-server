@@ -9,7 +9,7 @@ Database:
   Password: 123456
   # rule-server-mysql
   # Host: 127.0.0.1:13306
-  Host: athena-mysql:13306
+  Host: mysql:3306
   DBName: rule-server
   Charset: utf8mb4
   ParseTime: True

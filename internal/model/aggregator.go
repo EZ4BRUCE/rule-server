@@ -16,12 +16,12 @@ func (a Aggregator) Create(db *gorm.DB) error {
 	return db.Create(&a).Error
 }
 
-// 删除数据库特定聚合器
+// 删除数据库中特定聚合器
 func (a Aggregator) Delete(db *gorm.DB) error {
 	return db.Where("id = ?", a.Id).Delete(&a).Error
 }
 
-// 获取数据库特定聚合器
+// 获取数据库中特定聚合器
 func (a Aggregator) Get(db *gorm.DB) (Aggregator, error) {
 	var Aggregator Aggregator
 	err := db.Where("id = ?", a.Id).First(&Aggregator).Error

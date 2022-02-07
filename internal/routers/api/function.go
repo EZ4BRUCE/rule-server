@@ -16,7 +16,7 @@ func NewFunction() Function {
 	return Function{}
 }
 
-// swagger注释
+// swagger注释中为了方便说明，用了多个body，只有最后一个测试body会起作用
 
 // @Summary 新增聚合函数
 // @Produce  json

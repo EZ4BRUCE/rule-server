@@ -18,7 +18,7 @@ func NewAggregator() Aggregator {
 	return Aggregator{}
 }
 
-// swagger注释
+// swagger注释中为了方便说明，用了多个body，只有最后一个测试body会起作用
 
 // @Summary 新增聚合器
 // @Produce  json

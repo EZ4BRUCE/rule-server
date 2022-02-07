@@ -5,7 +5,8 @@ import (
 	"github.com/EZ4BRUCE/rule-server/internal/request"
 )
 
-// Service的方法，svc作为接收者
+// service层方法，接收请求结构体或特定参数执行dao方法
+
 func (svc *Service) CreateFunction(param *request.CreateFunctionRequest) error {
 	return svc.dao.CreateFunction(param.Type, param.Threshold, param.Description)
 }

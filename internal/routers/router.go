@@ -8,15 +8,18 @@ import (
 	"github.com/swaggo/gin-swagger/swaggerFiles"
 )
 
+// 返回特定路由及配置的gin.Engine
 func NewRouter() *gin.Engine {
 	r := gin.Default()
-	// localhost:1016/swagger/index.html
+	// swagger接口文档：localhost:1016/swagger/index.html
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	aggregator := api.NewAggregator()
 	function := api.NewFunction()
 	rule := api.NewRule()
+	// 设置路由组
 	api := r.Group("/api/")
 	{
+		// 聚合器aggregator的REST接口
 		api.POST("/aggregator", aggregator.Create)
 		api.DELETE("/aggregator/:id", aggregator.Delete)
 		api.PUT("/aggregator", aggregator.Update)
@@ -24,12 +27,14 @@ func NewRouter() *gin.Engine {
 		api.GET("/aggregators", aggregator.List)
 		api.GET("/aggregator/search/:metric", aggregator.Search)
 
+		// 聚合函数function的REST接口
 		api.POST("/function", function.Create)
 		api.DELETE("/function/:id", function.Delete)
 		api.PUT("/function", function.Update)
 		api.GET("/function/:id", function.Get)
 		api.GET("/functions", function.List)
 
+		// 告警规则rule的REST接口
 		api.POST("/rule", rule.Create)
 		api.DELETE("/rule/:id", rule.Delete)
 		api.PUT("/rule", rule.Update)

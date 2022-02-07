@@ -1,5 +1,6 @@
 package errcode
 
+// 预先定义一些错误代码
 var (
 	Success       = NewError(0, "操作成功")
 	ServerError   = NewError(10000000, "服务内部错误")

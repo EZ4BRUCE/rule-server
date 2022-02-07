@@ -11,12 +11,14 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// 空结构体给接口方法分类
 type Aggregator struct{}
 
-// 空结构体，只是给接口方法分类，或者用函数也可以
 func NewAggregator() Aggregator {
 	return Aggregator{}
 }
+
+// swagger注释
 
 // @Summary 新增聚合器
 // @Produce  json

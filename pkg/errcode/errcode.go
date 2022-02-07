@@ -5,6 +5,7 @@ import (
 	"net/http"
 )
 
+// 实现自定义错误类型
 type Error struct {
 	code    int      `json:"code"`
 	msg     string   `json:"msg"`

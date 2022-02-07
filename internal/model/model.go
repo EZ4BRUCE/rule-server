@@ -11,6 +11,7 @@ import (
 	"gorm.io/gorm/schema"
 )
 
+// 根据配置创建GORM的DB引擎实例
 func NewDBEngine(databaseSetting *setting.DatabaseSettingS) (*gorm.DB, error) {
 	dsn := fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=%s&parseTime=%t&loc=Local",
 		databaseSetting.UserName,
@@ -27,17 +28,18 @@ func NewDBEngine(databaseSetting *setting.DatabaseSettingS) (*gorm.DB, error) {
 		NamingStrategy: schema.NamingStrategy{SingularTable: true},
 		Logger:         logger.Default.LogMode(logger.Info),
 	})
+
 	if err != nil {
 		panic(err)
 	}
 	if global.ServerSetting.RunMode == "debug" {
 		db.Logger.LogMode(logger.Info)
 	}
-	// 老版本才有，这里有NamingStrategy: schema.NamingStrategy{SingularTable: true},
-	// db.SingularTable(true)
-	sqlDB, _ := db.DB()
+	sqlDB, err := db.DB()
+	if err != nil {
+		panic(err)
+	}
 	sqlDB.SetMaxIdleConns(databaseSetting.MaxIdleConns)
 	sqlDB.SetMaxOpenConns(databaseSetting.MaxOpenConns)
 	return db, nil
-
 }

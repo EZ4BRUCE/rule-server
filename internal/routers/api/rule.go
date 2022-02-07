@@ -9,12 +9,14 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// 空结构体给接口方法分类
 type Rule struct{}
 
-// 空结构体，只是给接口方法分类，或者用函数也可以
 func NewRule() Rule {
 	return Rule{}
 }
+
+// swagger注释
 
 // @Summary 新增告警规则
 // @Produce  json
@@ -135,5 +137,4 @@ func (r Rule) List(c *gin.Context) {
 		return
 	}
 	response.ToResponse(gin.H{"All rules:": rules, "msg": "获取成功"})
-
 }

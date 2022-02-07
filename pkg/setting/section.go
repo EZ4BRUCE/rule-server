@@ -2,6 +2,7 @@ package setting
 
 import "time"
 
+// 服务器配置结构体
 type ServerSettingS struct {
 	RunMode      string
 	HttpPort     string
@@ -9,6 +10,7 @@ type ServerSettingS struct {
 	WriteTimeout time.Duration
 }
 
+// 数据库配置结构体
 type DatabaseSettingS struct {
 	DBType       string
 	UserName     string
@@ -21,11 +23,11 @@ type DatabaseSettingS struct {
 	MaxOpenConns int
 }
 
+// 读取函数
 func (s *Setting) ReadSection(k string, v interface{}) error {
 	err := s.vp.UnmarshalKey(k, v)
 	if err != nil {
 		return err
 	}
-
 	return nil
 }

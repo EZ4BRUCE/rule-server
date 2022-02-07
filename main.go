@@ -12,6 +12,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// 项目配置初始化，仅在程序开始时执行一次
 func init() {
 	err := setupSetting()
 	if err != nil {
@@ -30,6 +31,7 @@ func init() {
 // @termsOfService https://github.com/EZ4BRUCE/rule-server
 func main() {
 	gin.SetMode(global.ServerSetting.RunMode)
+	// 不使用gin默认的引擎，而是将配置好的引擎作为handler传入http.Server
 	router := routers.NewRouter()
 	s := &http.Server{
 		Addr:           ":" + global.ServerSetting.HttpPort,
@@ -41,6 +43,7 @@ func main() {
 	s.ListenAndServe()
 }
 
+// 从configs中载入global配置
 func setupSetting() error {
 	setting, err := setting.NewSetting()
 	if err != nil {
@@ -60,6 +63,7 @@ func setupSetting() error {
 	return nil
 }
 
+// 根据global的设置初始化数据库
 func setupDBEngine() error {
 	var err error
 	global.DBEngine, err = model.NewDBEngine(global.DatabaseSetting)

@@ -2,6 +2,7 @@ package convert
 
 import "strconv"
 
+// 封装一些字符串与数字转化的函数
 type StrTo string
 
 func (s StrTo) String() string {

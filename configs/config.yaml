@@ -7,8 +7,8 @@ Database:
   DBType: mysql
   Username: root
   Password: 123456
-  # rule-server-mysql
   # Host: 127.0.0.1:13306
+  # 使用docker服务名作为hostname
   Host: mysql:3306
   DBName: rule-server
   Charset: utf8mb4

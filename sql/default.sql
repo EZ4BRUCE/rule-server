@@ -4,7 +4,7 @@
  Source Server         : rule-server
  Source Server Type    : MySQL
  Source Server Version : 80027
- Source Host           : localhost:3307
+ Source Host           : localhost:3306
  Source Schema         : rule-server
 
  Target Server Type    : MySQL
@@ -63,11 +63,11 @@ CREATE TABLE `function`  (
 -- ----------------------------
 -- Records of function
 -- ----------------------------
-INSERT INTO `function` VALUES (1, 'MAX', 90, '最大值类型函数，聚合数据的最大值不可大于阈值');
-INSERT INTO `function` VALUES (2, 'AVG', 90, '平均值类型函数，聚合数据的平均值值不可大于阈值');
-INSERT INTO `function` VALUES (3, 'MIN', 10, '最小值类型函数，聚合数据的最小值不可小于阈值');
-INSERT INTO `function` VALUES (4, 'SUM', 450, '求和类型函数，聚合结果值不可大于阈值');
-INSERT INTO `function` VALUES (5, 'LOGIC', 1, '用于复杂的聚合函数');
+INSERT INTO `function` VALUES (1, 'MAX', 90.0, '最大值类型函数，聚合数据的最大值不可大于阈值');
+INSERT INTO `function` VALUES (2, 'AVG', 90.0, '平均值类型函数，聚合数据的平均值值不可大于阈值');
+INSERT INTO `function` VALUES (3, 'MIN', 10.0, '最小值类型函数，聚合数据的最小值不可小于阈值');
+INSERT INTO `function` VALUES (4, 'SUM', 450.0, '求和类型函数，聚合结果值不可大于阈值');
+INSERT INTO `function` VALUES (5, 'LOGIC', 1.0, '用于复杂的聚合函数');
 
 -- ----------------------------
 -- Table structure for rule

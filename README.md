@@ -8,3 +8,7 @@
 $Env:GOARCH = "amd64"
 go build
 docker-compose up --build
+
+docker build -t athena-agent:v1 .
+
+docker run --name user-agent1 --network athena_frontend athena-agent

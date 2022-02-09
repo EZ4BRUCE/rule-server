@@ -1,14 +1,8 @@
-# rule-server
+# rule-server告警规则配置系统
 
- docker run --name rule-server-mysql -p 3307:3306 -v rule-data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql
+此为Athana监控系统的告警规则配置系统，具体部署需要查看此docker-compose的README
 
- swagger的注释写入那里，为了方便说明，用了多个body，只有最后一个测试body会起作用
+```
+https://github.com/EZ4BRUCE/athena
+```
 
- $Env:GOOS = "linux"; 
-$Env:GOARCH = "amd64"
-go build
-docker-compose up --build
-
-docker build -t athena-agent:v1 .
-
-docker run --name user-agent1 --network athena_frontend athena-agent

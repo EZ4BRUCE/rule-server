@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : rule-server
+ Source Server         : mysql13306
  Source Server Type    : MySQL
  Source Server Version : 80027
- Source Host           : localhost:3306
+ Source Host           : localhost:13306
  Source Schema         : rule-server
 
  Target Server Type    : MySQL
  Target Server Version : 80027
  File Encoding         : 65001
 
- Date: 03/02/2022 16:22:31
+ Date: 12/02/2022 16:52:02
 */
 
 SET NAMES utf8mb4;
@@ -29,7 +29,7 @@ CREATE TABLE `aggregator`  (
   `rule_id` int(0) UNSIGNED NULL DEFAULT NULL COMMENT '关联的告警规则id',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `name`(`name`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 35 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '聚合器表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 41 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '聚合器表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of aggregator
@@ -49,6 +49,22 @@ INSERT INTO `aggregator` VALUES (34, '磁盘占用求和监测', 'disk_used', 4,
 INSERT INTO `aggregator` VALUES (41, 'CPU与内存', 'cpu_mem', 5, 2);
 
 -- ----------------------------
+-- Table structure for email
+-- ----------------------------
+DROP TABLE IF EXISTS `email`;
+CREATE TABLE `email`  (
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '邮箱地址',
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `address_unique`(`address`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of email
+-- ----------------------------
+INSERT INTO `email` VALUES (1, 'athena_client@163.com');
+
+-- ----------------------------
 -- Table structure for function
 -- ----------------------------
 DROP TABLE IF EXISTS `function`;
@@ -63,11 +79,11 @@ CREATE TABLE `function`  (
 -- ----------------------------
 -- Records of function
 -- ----------------------------
-INSERT INTO `function` VALUES (1, 'MAX', 90.0, '最大值类型函数，聚合数据的最大值不可大于阈值');
-INSERT INTO `function` VALUES (2, 'AVG', 90.0, '平均值类型函数，聚合数据的平均值值不可大于阈值');
-INSERT INTO `function` VALUES (3, 'MIN', 10.0, '最小值类型函数，聚合数据的最小值不可小于阈值');
-INSERT INTO `function` VALUES (4, 'SUM', 450.0, '求和类型函数，聚合结果值不可大于阈值');
-INSERT INTO `function` VALUES (5, 'LOGIC', 1.0, '用于复杂的聚合函数');
+INSERT INTO `function` VALUES (1, 'MAX', 90, '最大值类型函数，聚合数据的最大值不可大于阈值');
+INSERT INTO `function` VALUES (2, 'AVG', 90, '平均值类型函数，聚合数据的平均值值不可大于阈值');
+INSERT INTO `function` VALUES (3, 'MIN', 10, '最小值类型函数，聚合数据的最小值不可小于阈值');
+INSERT INTO `function` VALUES (4, 'SUM', 450, '求和类型函数，聚合结果值不可大于阈值');
+INSERT INTO `function` VALUES (5, 'LOGIC', 1, '用于复杂的聚合函数');
 
 -- ----------------------------
 -- Table structure for rule

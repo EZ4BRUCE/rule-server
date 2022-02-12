@@ -16,6 +16,7 @@ func NewRouter() *gin.Engine {
 	aggregator := api.NewAggregator()
 	function := api.NewFunction()
 	rule := api.NewRule()
+	email := api.NewEmail()
 	// 设置路由组
 	api := r.Group("/api/")
 	{
@@ -40,6 +41,13 @@ func NewRouter() *gin.Engine {
 		api.PUT("/rule", rule.Update)
 		api.GET("/rule/:id", rule.Get)
 		api.GET("/rules", rule.List)
+
+		// 电子邮件email的REST接口
+		api.POST("/email", email.Create)
+		api.DELETE("/email/:id", email.Delete)
+		api.PUT("/email", email.Update)
+		api.GET("/email/:id", email.Get)
+		api.GET("/emails", email.List)
 
 	}
 	return r

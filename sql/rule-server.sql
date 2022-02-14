@@ -36,16 +36,13 @@ CREATE TABLE `aggregator`  (
 -- ----------------------------
 INSERT INTO `aggregator` VALUES (11, '内存占用最大值监测', 'memory_used', 1, 2);
 INSERT INTO `aggregator` VALUES (12, '内存占用平均值监测', 'memory_used', 2, 2);
-INSERT INTO `aggregator` VALUES (13, '内存占用最小值监测', 'memory_used', 3, 1);
-INSERT INTO `aggregator` VALUES (14, '内存占用求和监测', 'memory_used', 4, 3);
+INSERT INTO `aggregator` VALUES (13, '内存占用求和监测', 'memory_used', 4, 3);
 INSERT INTO `aggregator` VALUES (21, 'CPU占用最大值监测', 'cpu_rate', 1, 2);
 INSERT INTO `aggregator` VALUES (22, 'CPU占用平均值监测', 'cpu_rate', 2, 2);
-INSERT INTO `aggregator` VALUES (23, 'CPU占用最小值监测', 'cpu_rate', 3, 1);
-INSERT INTO `aggregator` VALUES (24, 'CPU占用求和监测', 'cpu_rate', 4, 3);
+INSERT INTO `aggregator` VALUES (23, 'CPU占用求和监测', 'cpu_rate', 4, 3);
 INSERT INTO `aggregator` VALUES (31, '磁盘占用最大值监测', 'disk_used', 1, 2);
 INSERT INTO `aggregator` VALUES (32, '磁盘占用平均值监测', 'disk_used', 2, 2);
-INSERT INTO `aggregator` VALUES (33, '磁盘占用最小值监测', 'disk_used', 3, 1);
-INSERT INTO `aggregator` VALUES (34, '磁盘占用求和监测', 'disk_used', 4, 3);
+INSERT INTO `aggregator` VALUES (33, '磁盘占用求和监测', 'disk_used', 4, 3);
 INSERT INTO `aggregator` VALUES (41, 'CPU与内存', 'cpu_mem', 5, 2);
 
 -- ----------------------------

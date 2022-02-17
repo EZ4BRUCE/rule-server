@@ -17,6 +17,7 @@ func NewRouter() *gin.Engine {
 	function := api.NewFunction()
 	rule := api.NewRule()
 	email := api.NewEmail()
+	smtp := api.NewSmtp()
 	// 设置路由组
 	api := r.Group("/api/")
 	{
@@ -48,6 +49,13 @@ func NewRouter() *gin.Engine {
 		api.PUT("/email", email.Update)
 		api.GET("/email/:id", email.Get)
 		api.GET("/emails", email.List)
+
+		// smtp服务的REST接口
+		api.POST("/smtp", smtp.Create)
+		api.DELETE("/smtp/:id", smtp.Delete)
+		api.PUT("/smtp", smtp.Update)
+		api.GET("/smtp/:id", smtp.Get)
+		api.GET("/smtps", smtp.List)
 
 	}
 	return r

@@ -52,6 +52,23 @@ definitions:
       level:
         type: string
     type: object
+  model.Smtp:
+    properties:
+      from:
+        type: string
+      host:
+        type: string
+      id:
+        type: integer
+      isSSL:
+        type: boolean
+      password:
+        type: string
+      port:
+        type: integer
+      userName:
+        type: string
+    type: object
   request.CreateAggregatorRequest:
     properties:
       functionId:
@@ -84,6 +101,21 @@ definitions:
       description:
         type: string
       level:
+        type: string
+    type: object
+  request.CreateSmtpRequest:
+    properties:
+      from:
+        type: string
+      host:
+        type: string
+      isSSL:
+        type: boolean
+      password:
+        type: string
+      port:
+        type: integer
+      userName:
         type: string
     type: object
   request.UpdateAggregatorRequest:
@@ -756,4 +788,179 @@ paths:
           schema:
             $ref: '#/definitions/errcode.Error'
       summary: 获取所有告警规则
+  /api/smtp:
+    post:
+      parameters:
+      - description: SMTP服务器
+        in: body
+        name: host
+        schema:
+          type: string
+      - description: 端口
+        in: body
+        name: port
+        schema:
+          type: integer
+      - description: 是否使用SSL加密
+        in: body
+        name: isSSL
+        schema:
+          type: boolean
+      - description: SMTP登录名
+        in: body
+        name: userName
+        schema:
+          type: string
+      - description: SMTP密码
+        in: body
+        name: password
+        schema:
+          type: string
+      - description: 发送邮箱地址
+        in: body
+        name: form
+        schema:
+          type: string
+      - description: 新建SMTP邮箱测试
+        in: body
+        name: 测试
+        required: true
+        schema:
+          $ref: '#/definitions/request.CreateSmtpRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 创建成功
+          schema:
+            $ref: '#/definitions/model.Smtp'
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+      summary: 新增SMTP邮箱
+    put:
+      parameters:
+      - description: SMTP邮箱 ID
+        in: body
+        name: id
+        schema:
+          type: integer
+      - description: SMTP服务器
+        in: body
+        name: host
+        schema:
+          type: string
+      - description: 端口
+        in: body
+        name: port
+        schema:
+          type: integer
+      - description: 是否使用SSL加密
+        in: body
+        name: isSSL
+        schema:
+          type: boolean
+      - description: SMTP登录名
+        in: body
+        name: userName
+        schema:
+          type: string
+      - description: SMTP密码
+        in: body
+        name: password
+        schema:
+          type: string
+      - description: 发送邮箱地址
+        in: body
+        name: form
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 更新成功
+          schema:
+            type: string
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+      summary: 更新SMTP邮箱
+  /api/smtp/{id}:
+    delete:
+      parameters:
+      - description: SMTP邮箱 ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 删除成功
+          schema:
+            type: string
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+      summary: 删除SMTP邮箱
+    get:
+      parameters:
+      - description: SMTP邮箱 ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 获取成功
+          schema:
+            $ref: '#/definitions/model.Smtp'
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+      summary: 获取单个SMTP邮箱
+  /api/smtps:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 获取成功
+          schema:
+            items:
+              $ref: '#/definitions/model.Smtp'
+            type: array
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+      summary: 获取所有SMTP邮箱
 swagger: "2.0"

@@ -11,7 +11,7 @@
  Target Server Version : 80027
  File Encoding         : 65001
 
- Date: 12/02/2022 16:52:02
+ Date: 17/02/2022 15:49:55
 */
 
 SET NAMES utf8mb4;
@@ -34,7 +34,7 @@ CREATE TABLE `aggregator`  (
 -- ----------------------------
 -- Records of aggregator
 -- ----------------------------
-INSERT INTO `aggregator` VALUES (11, '内存占用最大值监测', 'memory_used', 1, 2);
+INSERT INTO `aggregator` VALUES (11, '内存占用最大值监测', 'memory_used', 1, 6);
 INSERT INTO `aggregator` VALUES (12, '内存占用平均值监测', 'memory_used', 2, 2);
 INSERT INTO `aggregator` VALUES (13, '内存占用求和监测', 'memory_used', 4, 3);
 INSERT INTO `aggregator` VALUES (21, 'CPU占用最大值监测', 'cpu_rate', 1, 2);
@@ -54,7 +54,7 @@ CREATE TABLE `email`  (
   `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '邮箱地址',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `address_unique`(`address`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '用户邮箱' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of email
@@ -81,6 +81,8 @@ INSERT INTO `function` VALUES (2, 'AVG', 90, '平均值类型函数，聚合数�
 INSERT INTO `function` VALUES (3, 'MIN', 10, '最小值类型函数，聚合数据的最小值不可小于阈值');
 INSERT INTO `function` VALUES (4, 'SUM', 450, '求和类型函数，聚合结果值不可大于阈值');
 INSERT INTO `function` VALUES (5, 'LOGIC', 1, '用于复杂的聚合函数');
+INSERT INTO `function` VALUES (6, 'MAX', 80, '最大值类型函数，聚合数据的最大值不可大于阈值');
+
 
 -- ----------------------------
 -- Table structure for rule
@@ -100,5 +102,27 @@ CREATE TABLE `rule`  (
 INSERT INTO `rule` VALUES (1, 'INFO', 'MESSAGE', '特定情况发送短信通知');
 INSERT INTO `rule` VALUES (2, 'WARNING', 'EMAIL', '特定情况发送邮件到指定邮箱');
 INSERT INTO `rule` VALUES (3, 'FATAL', 'PHONE', '特定情况打电话');
+
+-- ----------------------------
+-- Table structure for smtp
+-- ----------------------------
+DROP TABLE IF EXISTS `smtp`;
+CREATE TABLE `smtp`  (
+  `id` int(0) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `host` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'SMTP服务器',
+  `port` int(0) NULL DEFAULT 465 COMMENT '端口',
+  `isSSL` tinyint(0) UNSIGNED NULL DEFAULT 1 COMMENT '是否使用SSL加密 0 为禁用、1 为启用',
+  `user_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'SMTP登录名',
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'SMTP密码',
+  `from` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '发送邮箱地址',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'SMTP服务表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of smtp
+-- ----------------------------
+INSERT INTO `smtp` VALUES (1, 'smtp.126.com', 465, 1, 'athena_server@126.com', 'RJPNHMTNLHTKDRGH', 'athena_server@126.com');
+INSERT INTO `smtp` VALUES (2, 'smtp.126.com', 465, 1, 'athena_server1@126.com', 'HYUSOPXJJJIEJRRW', 'athena_server1@126.com');
+INSERT INTO `smtp` VALUES (3, 'smtp.126.com', 465, 1, 'athena_server2@126.com', 'BTFJVDJKSTTUVUFU', 'athena_server2@126.com');
 
 SET FOREIGN_KEY_CHECKS = 1;

@@ -34,7 +34,7 @@ CREATE TABLE `aggregator`  (
 -- ----------------------------
 -- Records of aggregator
 -- ----------------------------
-INSERT INTO `aggregator` VALUES (11, '内存占用最大值监测', 'memory_used', 1, 6);
+INSERT INTO `aggregator` VALUES (11, '内存占用最大值监测', 'memory_used', 6, 2);
 INSERT INTO `aggregator` VALUES (12, '内存占用平均值监测', 'memory_used', 2, 2);
 INSERT INTO `aggregator` VALUES (13, '内存占用求和监测', 'memory_used', 4, 3);
 INSERT INTO `aggregator` VALUES (21, 'CPU占用最大值监测', 'cpu_rate', 1, 2);

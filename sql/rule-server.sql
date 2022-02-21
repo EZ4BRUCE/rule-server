@@ -34,7 +34,7 @@ CREATE TABLE `aggregator`  (
 -- ----------------------------
 -- Records of aggregator
 -- ----------------------------
-INSERT INTO `aggregator` VALUES (11, '内存占用最大值监测', 'memory_used', 6, 2);
+INSERT INTO `aggregator` VALUES (11, '内存占用最大值监测', 'memory_used', 1, 2);
 INSERT INTO `aggregator` VALUES (12, '内存占用平均值监测', 'memory_used', 2, 2);
 INSERT INTO `aggregator` VALUES (13, '内存占用求和监测', 'memory_used', 4, 3);
 INSERT INTO `aggregator` VALUES (21, 'CPU占用最大值监测', 'cpu_rate', 1, 2);
@@ -81,7 +81,6 @@ INSERT INTO `function` VALUES (2, 'AVG', 90, '平均值类型函数，聚合数�
 INSERT INTO `function` VALUES (3, 'MIN', 10, '最小值类型函数，聚合数据的最小值不可小于阈值');
 INSERT INTO `function` VALUES (4, 'SUM', 450, '求和类型函数，聚合结果值不可大于阈值');
 INSERT INTO `function` VALUES (5, 'LOGIC', 1, '用于复杂的聚合函数');
-INSERT INTO `function` VALUES (6, 'MAX', 80, '最大值类型函数，聚合数据的最大值不可大于阈值');
 
 
 -- ----------------------------

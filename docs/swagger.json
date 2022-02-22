@@ -1035,6 +1035,15 @@
                         "schema": {
                             "type": "string"
                         }
+                    },
+                    {
+                        "description": "更新SMTP邮箱测试",
+                        "name": "测试",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.UpdateSmtpRequest"
+                        }
                     }
                 ],
                 "responses": {
@@ -1494,6 +1503,32 @@
                     "type": "integer"
                 },
                 "level": {
+                    "type": "string"
+                }
+            }
+        },
+        "request.UpdateSmtpRequest": {
+            "type": "object",
+            "properties": {
+                "from": {
+                    "type": "string"
+                },
+                "host": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "isSSL": {
+                    "type": "boolean"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "port": {
+                    "type": "integer"
+                },
+                "userName": {
                     "type": "string"
                 }
             }

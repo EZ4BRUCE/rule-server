@@ -160,6 +160,23 @@ definitions:
       level:
         type: string
     type: object
+  request.UpdateSmtpRequest:
+    properties:
+      from:
+        type: string
+      host:
+        type: string
+      id:
+        type: integer
+      isSSL:
+        type: boolean
+      password:
+        type: string
+      port:
+        type: integer
+      userName:
+        type: string
+    type: object
 info:
   contact: {}
   description: Athena告警系统的告警规则配置子系统
@@ -880,6 +897,12 @@ paths:
         name: form
         schema:
           type: string
+      - description: 更新SMTP邮箱测试
+        in: body
+        name: 测试
+        required: true
+        schema:
+          $ref: '#/definitions/request.UpdateSmtpRequest'
       produces:
       - application/json
       responses:

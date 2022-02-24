@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : mysql13306
+ Source Server         : 腾讯云Rule-Server-MySql
  Source Server Type    : MySQL
- Source Server Version : 80027
- Source Host           : localhost:13306
+ Source Server Version : 80028
+ Source Host           : 1.12.242.39:13306
  Source Schema         : rule-server
 
  Target Server Type    : MySQL
- Target Server Version : 80027
+ Target Server Version : 80028
  File Encoding         : 65001
 
- Date: 17/02/2022 15:49:55
+ Date: 24/02/2022 19:04:05
 */
 
 SET NAMES utf8mb4;
@@ -29,21 +29,24 @@ CREATE TABLE `aggregator`  (
   `rule_id` int(0) UNSIGNED NULL DEFAULT NULL COMMENT '关联的告警规则id',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `name`(`name`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 41 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '聚合器表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 42 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '聚合器表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of aggregator
 -- ----------------------------
-INSERT INTO `aggregator` VALUES (11, '内存占用最大值监测', 'memory_used', 1, 2);
-INSERT INTO `aggregator` VALUES (12, '内存占用平均值监测', 'memory_used', 2, 2);
-INSERT INTO `aggregator` VALUES (13, '内存占用求和监测', 'memory_used', 4, 3);
-INSERT INTO `aggregator` VALUES (21, 'CPU占用最大值监测', 'cpu_rate', 1, 2);
-INSERT INTO `aggregator` VALUES (22, 'CPU占用平均值监测', 'cpu_rate', 2, 2);
-INSERT INTO `aggregator` VALUES (23, 'CPU占用求和监测', 'cpu_rate', 4, 3);
-INSERT INTO `aggregator` VALUES (31, '磁盘占用最大值监测', 'disk_used', 1, 2);
-INSERT INTO `aggregator` VALUES (32, '磁盘占用平均值监测', 'disk_used', 2, 2);
-INSERT INTO `aggregator` VALUES (33, '磁盘占用求和监测', 'disk_used', 4, 3);
-INSERT INTO `aggregator` VALUES (41, 'CPU与内存', 'cpu_mem', 5, 2);
+INSERT INTO `aggregator` VALUES (10, '内存占用WARNING最大值监测', 'memory_used', 1, 2);
+INSERT INTO `aggregator` VALUES (11, '内存占用FATAL最大值监测', 'memory_used', 2, 3);
+INSERT INTO `aggregator` VALUES (12, '内存占用平均值监测', 'memory_used', 3, 3);
+INSERT INTO `aggregator` VALUES (13, '内存占用求和监测', 'memory_used', 5, 3);
+INSERT INTO `aggregator` VALUES (20, 'CPU占用WARNING最大值监测', 'cpu_rate', 1, 2);
+INSERT INTO `aggregator` VALUES (21, 'CPU占用FATAL最大值监测', 'cpu_rate', 2, 3);
+INSERT INTO `aggregator` VALUES (22, 'CPU占用平均值监测', 'cpu_rate', 3, 3);
+INSERT INTO `aggregator` VALUES (23, 'CPU占用求和监测', 'cpu_rate', 5, 3);
+INSERT INTO `aggregator` VALUES (30, '磁盘占用WARNING最大值监测', 'disk_used', 1, 2);
+INSERT INTO `aggregator` VALUES (31, '磁盘占用FATAL最大值监测', 'disk_used', 2, 3);
+INSERT INTO `aggregator` VALUES (32, '磁盘占用平均值监测', 'disk_used', 3, 3);
+INSERT INTO `aggregator` VALUES (33, '磁盘占用求和监测', 'disk_used', 5, 3);
+INSERT INTO `aggregator` VALUES (41, 'CPU与内存', 'cpu_mem', 6, 3);
 
 -- ----------------------------
 -- Table structure for email
@@ -76,12 +79,12 @@ CREATE TABLE `function`  (
 -- ----------------------------
 -- Records of function
 -- ----------------------------
-INSERT INTO `function` VALUES (1, 'MAX', 90, '最大值类型函数，聚合数据的最大值不可大于阈值');
-INSERT INTO `function` VALUES (2, 'AVG', 90, '平均值类型函数，聚合数据的平均值值不可大于阈值');
-INSERT INTO `function` VALUES (3, 'MIN', 10, '最小值类型函数，聚合数据的最小值不可小于阈值');
-INSERT INTO `function` VALUES (4, 'SUM', 450, '求和类型函数，聚合结果值不可大于阈值');
-INSERT INTO `function` VALUES (5, 'LOGIC', 1, '用于复杂的聚合函数');
-
+INSERT INTO `function` VALUES (1, 'MAX', 60, 'WARNING型最大值类型函数，聚合数据的最大值不可大于阈值');
+INSERT INTO `function` VALUES (2, 'MAX', 90, 'FATAL型最大值函数，聚合数据的最大值不可大于阈值');
+INSERT INTO `function` VALUES (3, 'AVG', 90, '平均值类型函数，聚合数据的平均值值不可大于阈值');
+INSERT INTO `function` VALUES (4, 'MIN', 10, '最小值类型函数，聚合数据的最小值不可小于阈值');
+INSERT INTO `function` VALUES (5, 'SUM', 450, '求和类型函数，聚合结果值不可大于阈值');
+INSERT INTO `function` VALUES (6, 'LOGIC', 1, '用于复杂的聚合函数');
 
 -- ----------------------------
 -- Table structure for rule
@@ -115,7 +118,7 @@ CREATE TABLE `smtp`  (
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'SMTP密码',
   `from` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '发送邮箱地址',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'SMTP服务表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'SMTP服务表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of smtp

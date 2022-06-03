@@ -1,10 +1,10 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : 腾讯云Rule-Server-MySql
+ Source Server         : Rule-Server-MySql
  Source Server Type    : MySQL
  Source Server Version : 80028
- Source Host           : 1.12.242.39:13306
+ Source Host           : x.x.x.x:3306
  Source Schema         : rule-server
 
  Target Server Type    : MySQL
@@ -123,8 +123,6 @@ CREATE TABLE `smtp`  (
 -- ----------------------------
 -- Records of smtp
 -- ----------------------------
-INSERT INTO `smtp` VALUES (1, 'smtp.126.com', 465, 1, 'athena_server@126.com', 'RJPNHMTNLHTKDRGH', 'athena_server@126.com');
-INSERT INTO `smtp` VALUES (2, 'smtp.126.com', 465, 1, 'athena_server1@126.com', 'HYUSOPXJJJIEJRRW', 'athena_server1@126.com');
-INSERT INTO `smtp` VALUES (3, 'smtp.126.com', 465, 1, 'athena_server2@126.com', 'BTFJVDJKSTTUVUFU', 'athena_server2@126.com');
+
 
 SET FOREIGN_KEY_CHECKS = 1;

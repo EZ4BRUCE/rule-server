@@ -64,6 +64,7 @@ CREATE TABLE `email`  (
 -- ----------------------------
 INSERT INTO `email` VALUES (1, 'athena_client@163.com');
 
+
 -- ----------------------------
 -- Table structure for function
 -- ----------------------------
@@ -123,6 +124,8 @@ CREATE TABLE `smtp`  (
 -- ----------------------------
 -- Records of smtp
 -- ----------------------------
-
+INSERT INTO `smtp` VALUES (1, 'smtp.126.com', 465, 1, 'athena_server@126.com', 'RJPNHMTNLHTKDRGH', 'athena_server@126.com');
+INSERT INTO `smtp` VALUES (2, 'smtp.126.com', 465, 1, 'athena_server1@126.com', 'HYUSOPXJJJIEJRRW', 'athena_server1@126.com');
+INSERT INTO `smtp` VALUES (3, 'smtp.126.com', 465, 1, 'athena_server2@126.com', 'BTFJVDJKSTTUVUFU', 'athena_server2@126.com');
 
 SET FOREIGN_KEY_CHECKS = 1;
